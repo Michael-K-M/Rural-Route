@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rural_Route.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="15"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="login_image.jpg"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="150"
+                HorizontalOptions="Center" />
+            <Label
+                Text="Welcom back!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Login into your account."
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            
+            <!-- Email Information-->
+            <Label Grid.Row="2" Text="Enter username here" FontSize="16" FontAttributes="Bold"/>
+
+            <Entry Placeholder="Username" x:Name="txt_LoginUsername" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+
+
+            <!-- Password Information-->
+            <Label Grid.Row="4" Text="Enter password here" FontSize="16" FontAttributes="Bold"/>
+
+            <Entry Placeholder="Password" x:Name="txt_LoginPassword" BackgroundColor="#c7dbe0" TextColor="#578794" IsPassword="True"/>
+            
+
+            <Button
+                x:Name="CounterBtn"
+                Text="Login"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

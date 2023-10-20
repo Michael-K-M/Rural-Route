@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rural_Route.Admin"
+             Title="Admin">
+    <VerticalStackLayout>
+        <Label 
+            Text="Lets create a new user"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <!-- name Information-->
+        <Label Grid.Row="2" Text="Enter name here" FontSize="16" FontAttributes="Bold"/>
+
+        <Entry Placeholder="name" x:Name="txt_firstname" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+
+        <!-- Surname Information-->
+        <Label Grid.Row="2" Text="Enter surname here" FontSize="16" FontAttributes="Bold"/>
+
+        <Entry Placeholder="surname" x:Name="txt_Surname" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+
+
+        <!-- Email Information-->
+        <Label Grid.Row="2" Text="Enter username here" FontSize="16" FontAttributes="Bold"/>
+
+        <Entry Placeholder="Username" x:Name="txt_Username" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+
+        <!-- Password Information-->
+        <Label Grid.Row="4" Text="Enter password here" FontSize="16" FontAttributes="Bold"/>
+
+        <Entry Placeholder="Password" x:Name="txt_Password" BackgroundColor="#c7dbe0" TextColor="#578794" IsPassword="True"/>
+
+        <!-- Possition Information-->
+        
+        <Picker x:Name="picker"
+                Grid.Row="4" FontSize="16" FontAttributes="Bold"
+        Title="Please select a position for the user">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Admin</x:String>
+                    <x:String>Sales Rep</x:String>
+                    <x:String>Driver</x:String>
+                    
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        
+        <Button Text="Create account"
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                 />
+
+
+    </VerticalStackLayout>
+</ContentPage>
