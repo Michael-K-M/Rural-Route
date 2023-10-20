@@ -30,9 +30,6 @@ namespace Rural_Route.Data
                             var test = reader.GetString("firstname");
                             var tests = reader.GetString("lastname");
                             var testss = reader.GetString("possition");
-
-                            //reader.GetDecimal();
-                            // Process results
                         }
                     }
                 }
