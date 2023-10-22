@@ -55,8 +55,7 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="Npgsql" Version="7.0.6" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="Npgsql" Version="8.0.0-preview.4" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,6 +72,10 @@
 
 	<ItemGroup>
 	  <Folder Include="models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Platforms\Android\Resources\raw\ssl_cert_snakeoil.pem" />
 	</ItemGroup>
 
 </Project>
