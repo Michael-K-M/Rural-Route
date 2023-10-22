@@ -15,27 +15,6 @@ namespace Rural_Route.Data
     {
         string connectionString = "Server=102.33.120.123;Port=5432;Database=rural_route_db;User Id=pi;Password=M1chaelmohr;";
 
-
-        public void Connect()
-        {
-            using (var connection = new NpgsqlConnection(connectionString))
-            {
-                connection.Open();
-                using (var command = new NpgsqlCommand("SELECT * FROM um.user", connection))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var test = reader.GetString("firstname");
-                            var tests = reader.GetString("lastname");
-                            var testss = reader.GetString("possition");
-                        }
-                    }
-                }
-            }
-        }
-
         public User SignInUser(string username, string password)
         {
             using (var connection = new NpgsqlConnection(connectionString))
