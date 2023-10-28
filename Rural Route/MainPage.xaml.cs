@@ -7,36 +7,21 @@ namespace Rural_Route
 {
     public partial class MainPage : ContentPage
     {
-        Database db = new Database();
-
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private async void OnCounterClicked(object sender, EventArgs e)
+        public Button LoggedInButton => LoginBtn;
+        public string UserName => txt_LoginUsername.Text;
+        public string Password => txt_LoginPassword.Text;
+
+        private void Button_Clicked(object sender, EventArgs e)
         {
-            
-            var loggedInUser = db.SignInUser(txt_LoginUsername.Text, txt_LoginPassword.Text);
-            if(loggedInUser == null)
-            {
-                await DisplayAlert("ERROR!", "Sorry but your username or password is incorrect.", "Retry");
-                return;
-            }
-            // send user to location
-            if(loggedInUser.Pos == Position.Admin)
-            {
-                await Navigation.PushAsync(new Admin());
-            }
-            else if (loggedInUser.Pos == Position.Driver)
-            {
-                await Navigation.PushAsync(new DriverHomepage());
-            }
-            else if (loggedInUser.Pos == Position.SalesRep)
-            {
-                await Navigation.PushAsync(new SalesRepHomepage());
-            }
+
+            txt_LoginUsername.Text = "";
+            txt_LoginPassword.Text = "";
+
         }
     }
 }

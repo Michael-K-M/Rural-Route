@@ -62,6 +62,15 @@
 	  <MauiXaml Update="Admin.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="adminCreateDelivery.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AdminCreateProduct.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CustomFlyoutShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="DriverHomepage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -76,6 +85,12 @@
 
 	<ItemGroup>
 	  <MauiAsset Include="Platforms\Android\Resources\raw\ssl_cert_snakeoil.pem" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="CustomFlyoutShell.xaml.cs">
+	    <DependentUpon>CustomFlyoutShell.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

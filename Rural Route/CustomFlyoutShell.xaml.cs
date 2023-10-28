@@ -1,8 +1,8 @@
 ﻿namespace Rural_Route
 {
-    public partial class AppShell : Shell
+    public partial class CustomFlyoutShell : Shell
     {
-        public AppShell()
+        public CustomFlyoutShell()
         {
             InitializeComponent();
         }

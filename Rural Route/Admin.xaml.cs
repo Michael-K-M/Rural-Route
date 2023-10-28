@@ -10,7 +10,7 @@ public partial class Admin : ContentPage
     public Admin()
 	{
 		InitializeComponent();
-		new Database().Connect();
+		new Database();
 	}
 
     private void Button_Clicked(object sender, EventArgs e)
