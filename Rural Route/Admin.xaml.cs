@@ -6,7 +6,7 @@ namespace Rural_Route;
 
 public partial class Admin : ContentPage
 {
-    Database db = new Database();
+   
     public Admin()
 	{
 		InitializeComponent();
@@ -27,7 +27,7 @@ public partial class Admin : ContentPage
         else
             createdUser.Pos = (Position)Enum.Parse(typeof(Position), picker.SelectedItem.ToString());
 
-        db.CreateAccount(createdUser, txt_Password.Text);
+        App.RuralRouteRepository.CreateAccount(createdUser, txt_Password.Text);
 
         txt_firstname.Text = "";
         txt_Surname.Text = "";

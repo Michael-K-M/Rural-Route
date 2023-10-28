@@ -2,11 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.adminCreateDelivery"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
              Title="adminCreateDelivery">
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <Label 
+        Text="Lets create a new Order"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+
+    <!-- Customer Name-->
+        <Label Grid.Row="2" Text="Select customer name:" FontSize="16" FontAttributes="Bold"/>
+        
+        <Picker x:Name="picker"
+        Grid.Row="4" FontSize="16" FontAttributes="Bold"
+        Title="Please select a Customer">
+            
+        </Picker>
+
+        <!-- Customer Location-->
+        <Label Grid.Row="2" Text="Enter customer location/Address:" FontSize="16" FontAttributes="Bold"/>
+        <Entry Placeholder="Product Name:" x:Name="txt_customerAddress" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+
+        <!-- Customer Date-->
+        <Label Grid.Row="2" Text="Select date of delivery:" FontSize="16" FontAttributes="Bold"/>
+        <DatePicker MinimumDate="{Binding MinDate}"
+            MaximumDate="{Binding MaxDate}"
+            Date="{Binding SelectedDate}" />
+
+        <!-- Creating datagrid for orders-->
+
+        <dg:DataGrid ItemsSource="{Binding CustomerList}" SelectionEnabled="True" SelectedItem="{Binding Customer} "
+                RowHeight="70" HeaderHeight="50" BorderColor="{StaticResource GridBorderColor}"
+                
+                PullToRefreshCommand="true" PaginationEnabled="true" PageSize="5"
+                ActiveRowColor="{StaticResource ActiveRowColor}">
+            <dg:DataGrid.Columns>
+                
+                <dg:DataGridColumn Title="Name" PropertyName="Name" IsVisible="{Binding TeamColumnVisible}" Width="{Binding TeamColumnWidth}" />
+                
+            </dg:DataGrid.Columns>
+            <dg:DataGrid.RowsBackgroundColorPalette>
+                <dg:PaletteCollection>
+                    <Color>#F2F2F2</Color>
+                    <Color>#FFFFFF</Color>
+                </dg:PaletteCollection>
+            </dg:DataGrid.RowsBackgroundColorPalette>
+        </dg:DataGrid>
+
+        <Button Text="Add Order"
+             
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+             />
+
+
     </VerticalStackLayout>
+
 </ContentPage>

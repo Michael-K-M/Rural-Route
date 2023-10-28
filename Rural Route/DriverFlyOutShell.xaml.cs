@@ -1,8 +1,8 @@
 ﻿namespace Rural_Route
 {
-    public partial class CustomFlyoutShell : Shell
+    public partial class DriverFlyOutShell : Shell
     {
-        public CustomFlyoutShell()
+        public DriverFlyOutShell()
         {
             InitializeComponent();
         }

@@ -6,7 +6,7 @@ namespace Rural_Route
     public partial class App : Application
     {
 
-        Database db = new Database();
+        public static Database RuralRouteRepository = new Database();
         public App()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace Rural_Route
             var button = (Button)sender;
 
             var loginPage = (MainPage) button.Parent.Parent.Parent;
-            var loggedInUser = db.SignInUser(loginPage.UserName, loginPage.Password);
+            var loggedInUser = App.RuralRouteRepository.SignInUser(loginPage.UserName, loginPage.Password);
             if (loggedInUser == null)
             {
                 Current.MainPage.DisplayAlert("ERROR!", "Sorry but your username or password is incorrect.", "Retry");
@@ -36,11 +36,11 @@ namespace Rural_Route
             // send user to location
             if (loggedInUser.Pos == Position.Admin)
             {
-                //await Navigation.PushAsync(new Admin());
+                MainPage = new AdminFlyOutShell();
             }
             else if (loggedInUser.Pos == Position.Driver)
             {
-                MainPage = new CustomFlyoutShell();
+                MainPage = new DriverFlyOutShell();
             }
             else if (loggedInUser.Pos == Position.SalesRep)
             {

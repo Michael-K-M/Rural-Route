@@ -11,7 +11,7 @@ using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 
 namespace Rural_Route.Data
 {
-    class Database
+    public class Database
     {
         string connectionString = "Server=102.33.120.123;Port=5432;Database=rural_route_db;User Id=pi;Password=M1chaelmohr;";
 
@@ -61,6 +61,64 @@ namespace Rural_Route.Data
             }
         }
 
-       
+        public void CreateProduct(Product product)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("INSERT INTO um.product (product_name, product_price) VALUES (@product_name, @product_price) ", connection))
+                {
+                    command.Parameters.Add(new NpgsqlParameter("@product_name", product.Name));
+                    command.Parameters.Add(new NpgsqlParameter("@product_price", product.Price));
+
+                    command.ExecuteNonQuery();
+
+
+                }
+            }
+        }
+
+        public void CreateCustomer(Customer customer)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("INSERT INTO um.customer (customer_name) VALUES (@customer_name) ", connection))
+                {
+                    command.Parameters.Add(new NpgsqlParameter("@customer_name", customer.Name));
+
+                    command.ExecuteNonQuery();
+
+
+                }
+            }
+        }
+
+        public List<Customer> SelectCustomerInfo()
+        {
+            var customerList = new List<Customer>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("Select * from  um.customer", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var customer = new Customer();
+                            customer.Id = reader.GetInt32("customer_id");
+                            customer.Name = reader.GetString("customer_name");
+                            
+                            customerList.Add(customer);
+                        }
+                    }
+
+                }
+
+            }
+            return customerList;
+        }
+
     }
 }

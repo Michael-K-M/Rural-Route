@@ -53,6 +53,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="akgul.Maui.DataGrid" Version="3.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Npgsql" Version="8.0.0-preview.4" />
@@ -62,13 +63,19 @@
 	  <MauiXaml Update="Admin.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="AdminCreateCustomer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="adminCreateDelivery.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="AdminCreateProduct.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CustomFlyoutShell.xaml">
+	  <MauiXaml Update="AdminFlyOutShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="DriverFlyOutShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="DriverHomepage.xaml">
@@ -88,8 +95,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="CustomFlyoutShell.xaml.cs">
-	    <DependentUpon>CustomFlyoutShell.xaml</DependentUpon>
+	  <Compile Update="AdminFlyOutShell.xaml.cs">
+	    <DependentUpon>AdminFlyOutShell.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="DriverFlyOutShell.xaml.cs">
+	    <DependentUpon>DriverFlyOutShell.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
