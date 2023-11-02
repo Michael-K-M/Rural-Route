@@ -8,19 +8,24 @@
     BackgroundColor="White">
 
     <ShellContent
-        Title="DriverHomepage"
+        Title="Homepage"
         ContentTemplate="{DataTemplate local:DriverHomepage}"
         Route="DriverHomepage" />
 
 
     <ShellContent
-        Title="SalesRepHomepage"
-        ContentTemplate="{DataTemplate local:SalesRepHomepage}"
-        Route="SalesRepHomepage" />
+        Title="Select Order"
+        ContentTemplate="{DataTemplate local:DriverSelectOrder}"
+        Route="DriverSelectOrder" />
+
+    <ShellContent
+    Title="Complete Order"
+    ContentTemplate="{DataTemplate local:DriverEndOrder}"
+    Route="DriverEndOrder" />
 
 
     <ShellContent
-        Title="Admin"
-        ContentTemplate="{DataTemplate local:Admin}"
-        Route="Admin" />
+        Title="Logout"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
 </Shell>

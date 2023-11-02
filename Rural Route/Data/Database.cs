@@ -120,5 +120,30 @@ namespace Rural_Route.Data
             return customerList;
         }
 
+        public List<Product> SelectProductName()
+        {
+            var productList = new List<Product>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("Select * from  um.product", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var product = new Product();
+                            product.Id = reader.GetInt32("product_id");
+                            product.Name = reader.GetString("product_name");
+
+                            productList.Add(product);
+                        }
+                    }
+
+                }
+
+            }
+            return productList;
+        }
     }
 }

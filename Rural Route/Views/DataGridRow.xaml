@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rural_Route.Views.DataGridRow">
+    <StackLayout HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
+        <Grid x:Name="GridHeader" IsVisible="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                
+            </Grid.ColumnDefinitions>
+        
+            <!-- Row 1 **HEADER** -->
+            <Frame Grid.Column="0" Padding="0.01" BorderColor="white">
+                <Label Text="Product" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+            <Frame Grid.Column="1"  Padding="0.01" BorderColor="white">
+                <Label Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+            
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+               
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 -->
+            <Frame Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0">
+                <Picker x:Name="picker_Product"
+                    TextColor="Black">
+                </Picker>
+            </Frame>
+
+            <Frame Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0">
+                <Entry Placeholder="R" TextColor="Black" x:Name="QuantityEntry"/>
+            </Frame>
+
+            
+        </Grid>
+    </StackLayout>
+</ContentView>

@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Rural_Route"
     Shell.FlyoutBehavior="Flyout"
-    BackgroundColor="White">
+    BackgroundColor="White"
+    >
 
     <ShellContent
         Title="Create Product"
@@ -30,5 +31,7 @@
     <ShellContent
         Title="Logout"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="Admin" />
+        Route="MainPage" />
+
+    
 </Shell>
