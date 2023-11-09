@@ -17,10 +17,7 @@ public partial class adminCreateDelivery : ContentPage
 
 	private void PopulateCustomers()
 	{
-		foreach (var customer in CustomerList)
-		{
-			picker.Items.Add(customer.Name);
-        }
+        picker.ItemsSource = CustomerList;
     }
 
     
@@ -38,16 +35,29 @@ public partial class adminCreateDelivery : ContentPage
 
     private void Button_Pressed(object sender, EventArgs e)
     {
+        Order order = new Order();
+        order.CustomerId = (picker.SelectedItem as Customer).Id;
+        order.OrderStatus = "Pending";
+        order.Location = txt_customerAddress.Text;
+        order.DateTime = Date_Picker.Date;
+
+        List<OrderProduct> orderProducts = new List<OrderProduct>();
+
         foreach (var row in GridDisplay.Children)
         {
-
             var gridRow = (DataGridRow)row;
             if (gridRow.IsFilledEntry())
             {
-                var detail = gridRow.GetGridInfo();
+                OrderProduct orderProduct = new OrderProduct();
 
+                var detail = gridRow.GetGridInfo();
+                orderProduct.ProductId = detail.productId;
+                orderProduct.Quantity = detail.amount;
+                orderProducts.Add(orderProduct);
             }
         }
+
+        App.RuralRouteRepository.CreateOrder(order, orderProducts);
 
     }
 }

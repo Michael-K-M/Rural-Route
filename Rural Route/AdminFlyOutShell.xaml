@@ -9,6 +9,11 @@
     >
 
     <ShellContent
+    Title="Homepage"
+    ContentTemplate="{DataTemplate local:AdminMainPage}"
+    Route="AdminMainPage" />
+
+    <ShellContent
         Title="Create Product"
         ContentTemplate="{DataTemplate local:AdminCreateProduct}"
         Route="AdminCreateProduct" />

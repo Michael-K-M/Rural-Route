@@ -16,18 +16,20 @@ public partial class DataGridRow : ContentView
 
     private void PopulateProduct()
     {
-        foreach (var product in ProductList)
-        {
-            picker_Product.Items.Add(product.Name);
-        }
+        ProductPicker.ItemsSource = ProductList;
     }
 
     public bool IsFilledEntry()
 	{
-		return !string.IsNullOrEmpty(picker_Product.SelectedItem.ToString());
+		return !string.IsNullOrEmpty(QuantityEntry.Text);
 	}
-	public (string, double) GetGridInfo()
+
+	public (int productId, int amount) GetGridInfo()
 	{
-		return (picker_Product.SelectedItem.ToString(), double.Parse(QuantityEntry.Text));
+        var product = ProductPicker.SelectedItem as Product;
+
+		return (product.Id, int.Parse(QuantityEntry.Text));
     }
+
+
 }

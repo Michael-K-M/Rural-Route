@@ -94,6 +94,36 @@ namespace Rural_Route.Data
             }
         }
 
+        public void CreateOrder(Order order, List<OrderProduct> orderproducts)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                long orderId;
+                connection.Open();
+                using (var command = new NpgsqlCommand("INSERT INTO um.Orders (customer_id, order_status, location, datetime) VALUES (@customer_id, @order_status, @location, @datetime); select currval('um.order_id_seq');", connection))
+                {
+                    command.Parameters.Add(new NpgsqlParameter("@customer_id", order.CustomerId));
+                    command.Parameters.Add(new NpgsqlParameter("@order_status", order.OrderStatus));
+                    command.Parameters.Add(new NpgsqlParameter("@location", order.Location));
+                    command.Parameters.Add(new NpgsqlParameter("@datetime", order.DateTime));
+                    orderId = (long)command.ExecuteScalar();
+                }
+                
+                foreach (var product in orderproducts)
+                {
+                    product.OrderId = orderId;
+                    using (var command = new NpgsqlCommand("INSERT INTO um.order_product (product_id, quantity, order_id) VALUES (@product_id, @quantity, @order_id) ", connection))
+                    {
+                        command.Parameters.Add(new NpgsqlParameter("@product_id", product.ProductId));
+                        command.Parameters.Add(new NpgsqlParameter("@quantity", product.Quantity));
+                        command.Parameters.Add(new NpgsqlParameter("@order_id", product.OrderId));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                
+            }
+        }
+
         public List<Customer> SelectCustomerInfo()
         {
             var customerList = new List<Customer>();

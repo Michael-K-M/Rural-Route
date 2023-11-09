@@ -30,8 +30,10 @@
 
             <!-- Row 1 -->
             <Frame Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0">
-                <Picker x:Name="picker_Product"
+                <Picker x:Name="ProductPicker"
+                    Grid.Row="4" FontSize="16" FontAttributes="Bold " 
                     TextColor="Black">
+
                 </Picker>
             </Frame>
 

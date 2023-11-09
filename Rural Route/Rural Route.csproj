@@ -75,6 +75,9 @@
 	  <MauiXaml Update="AdminFlyOutShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="AdminMainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="DriverEndOrder.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

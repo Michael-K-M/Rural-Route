@@ -29,7 +29,8 @@
 
         <!-- Customer Date-->
         <Label Grid.Row="2" Text="Select date of delivery:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
-        <DatePicker MinimumDate="{Binding MinDate}"
+        <DatePicker x:Name="Date_Picker"
+            MinimumDate="{Binding MinDate}"
             MaximumDate="{Binding MaxDate}"
             Date="{Binding SelectedDate}" 
                     TextColor="Black"/>

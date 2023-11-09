@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace Rural_Route.Data
 {
-    public class Customer
+    public class Order
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-
-        public override string ToString()
-        {
-            return Name; // This is what will be displayed in the picker
-        }
+        public int CustomerId { get; set; }
+        public string OrderStatus { get; set; }
+        public string Location { get; set; }
+        public DateTime DateTime { get; set; }
 
     }
-
-
 
     
 }
