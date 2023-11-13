@@ -33,6 +33,8 @@ public partial class adminCreateDelivery : ContentPage
         GridDisplay.Add(new DataGridRow(ProductList));
     }
 
+    
+
     private void Button_Pressed(object sender, EventArgs e)
     {
         Order order = new Order();
@@ -59,5 +61,11 @@ public partial class adminCreateDelivery : ContentPage
 
         App.RuralRouteRepository.CreateOrder(order, orderProducts);
 
+        picker.SelectedItem = "";
+        txt_customerAddress.Text = "";
+        GridDisplay.Clear();
+        PopulateGridView();
+
+        DisplayAlert("Great News!", "You have successfully created a new Order", "OK");
     }
 }

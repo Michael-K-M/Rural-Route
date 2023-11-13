@@ -3,10 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.DriverSelectOrder"
              Title="DriverSelectOrder">
+    
     <VerticalStackLayout>
         <Label 
             Text="Select Order to Start"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Picker x:Name="picker"
+Grid.Row="4" FontSize="16" FontAttributes="Bold " 
+Title="Select Order"
+        TextColor="Black">
+        </Picker>
+
+        <!-- Customer Location-->
+        <Label Grid.Row="2" Text="Location/Address:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+        <Entry  x:Name="txt_customerAddress" BackgroundColor="#c7dbe0" TextColor="#578794" IsReadOnly="true" />
+
+        <Label Grid.Row="2" Text="Date of delivery:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+        <Entry x:Name="txt_DeliveryDate" BackgroundColor="#c7dbe0" TextColor="#578794" IsReadOnly="true" />
+
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+            <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+
+            </StackLayout>
+        </ScrollView>
+
+        <Button Text="Start Delivery"
+     
+    VerticalOptions="EndAndExpand"
+    HorizontalOptions="Center"
+     />
     </VerticalStackLayout>
 </ContentPage>

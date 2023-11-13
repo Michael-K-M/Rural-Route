@@ -175,5 +175,30 @@ namespace Rural_Route.Data
             }
             return productList;
         }
+
+        public List<Customer> DisplayOrder()
+        {
+            var customerList = new List<Customer>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("Select * from um.customer, um.orders where um.customer.customer_id = um.orders.customer_id and um.orders.order_status = 'Pending'", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var customer = new Customer();
+                            customer.Id = reader.GetInt32("customer_id");
+                            customer.Name = reader.GetString("customer_name");
+
+                            customerList.Add(customer);
+                        }
+                    }
+                }
+            }
+            return customerList;
+        }
+
     }
 }
