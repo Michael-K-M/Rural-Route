@@ -29,12 +29,14 @@
             </Grid.ColumnDefinitions>
 
             <!-- Row 1 -->
-            <Frame Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0">
+            <Frame x:Name="FramePicker" Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0">
                 <Picker x:Name="ProductPicker"
                     Grid.Row="4" FontSize="16" FontAttributes="Bold " 
-                    TextColor="Black">
+                    TextColor="Black"/>
+            </Frame>
 
-                </Picker>
+            <Frame x:Name="FrameLable" Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0" IsVisible="false">
+                <Label x:Name="ProductName" Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
             </Frame>
 
             <Frame Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0">

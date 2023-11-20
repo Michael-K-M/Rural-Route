@@ -31,5 +31,16 @@ public partial class DataGridRow : ContentView
 		return (product.Id, int.Parse(QuantityEntry.Text));
     }
 
+    public void PopulateReadOnlyProducts(int quantity)
+    {
+        FrameLable.IsVisible = true;
+        FramePicker.IsVisible = false;
+        ProductPicker.SelectedIndex = 0;
+        var product = ProductPicker.SelectedItem as Product;
 
+        ProductName.Text = product.Name;
+        QuantityEntry.Text = quantity.ToString();
+        ProductPicker.IsEnabled = false;
+        QuantityEntry.IsEnabled = false;
+    }
 }

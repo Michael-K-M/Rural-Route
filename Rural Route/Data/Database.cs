@@ -8,6 +8,7 @@ using Npgsql;
 using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+using Microsoft.Maui;
 
 namespace Rural_Route.Data
 {
@@ -176,29 +177,79 @@ namespace Rural_Route.Data
             return productList;
         }
 
-        public List<Customer> DisplayOrder()
+        public List<DriverOrderAndProduct> DisplayOrder()
         {
-            var customerList = new List<Customer>();
+            var driverOrderAndProductList = new List<DriverOrderAndProduct>();
             using (var connection = new NpgsqlConnection(connectionString))
             {
+                var displayOrderName = $"""
+                Select c.customer_id, c.customer_name, o.order_id, o.location, o.datetime
+                from um.orders o
+                join um.customer c on c.customer_id = o.customer_id 
+                where o.order_status = 'Pending'
+                """;
+
                 connection.Open();
-                using (var command = new NpgsqlCommand("Select * from um.customer, um.orders where um.customer.customer_id = um.orders.customer_id and um.orders.order_status = 'Pending'", connection))
+                using (var command = new NpgsqlCommand(displayOrderName, connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            var customer = new Customer();
-                            customer.Id = reader.GetInt32("customer_id");
-                            customer.Name = reader.GetString("customer_name");
+                            var driverOrderAndProduct = new DriverOrderAndProduct();
+                            driverOrderAndProduct.Order = new Order();
+                            driverOrderAndProduct.Customer = new Customer();
+                            driverOrderAndProduct.Products = new List<(string name, int quantity)>();
+                            driverOrderAndProduct.Customer.Id = reader.GetInt32("customer_id");
+                            driverOrderAndProduct.Customer.Name = reader.GetString("customer_name");
+                            driverOrderAndProduct.Order.Id = reader.GetInt32("order_id");
+                            driverOrderAndProduct.Order.DateTime = reader.GetDateTime("datetime");
+                            driverOrderAndProduct.Order.Location = reader.GetString("location");
 
-                            customerList.Add(customer);
+                            driverOrderAndProductList.Add(driverOrderAndProduct);
+                        }
+                    }
+                }
+
+                var orderIds = driverOrderAndProductList.Select(x => x.Order.Id).ToList();
+
+                var productQuery = $"""
+                select p.product_name, op.quantity, op.order_id
+                from um.product p
+                join um.order_product op on p.product_id = op.product_id 
+                where op.order_id = Any(@orderIds);
+                """;
+
+                using (var command = new NpgsqlCommand(productQuery, connection))
+                {
+
+                    command.Parameters.Add(new NpgsqlParameter("@orderIds", orderIds));
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            driverOrderAndProductList.First(x => x.Order.Id == reader.GetInt32("order_id"))
+                                .Products.Add((reader.GetString("product_name"), reader.GetInt32("quantity")));
+
+
+                            /*
+                            var orderId = reader.GetInt32("order_id");
+
+                           foreach (var driverOrderAndProduct in driverOrderAndProductList)
+                            {
+                                if(driverOrderAndProduct.Order.Id == orderId)
+                                {
+                                    driverOrderAndProduct.Products.Add((reader.GetString("name"), reader.GetInt32("quantity")));
+                                }
+                            }
+                            */
                         }
                     }
                 }
             }
-            return customerList;
+            return driverOrderAndProductList;
         }
+        
 
     }
 }

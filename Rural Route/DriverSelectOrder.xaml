@@ -13,6 +13,7 @@
         <Picker x:Name="picker"
 Grid.Row="4" FontSize="16" FontAttributes="Bold " 
 Title="Select Order"
+                
         TextColor="Black">
         </Picker>
 
