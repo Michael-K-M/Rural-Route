@@ -36,15 +36,27 @@ public partial class DriverSelectOrder : ContentPage
 
         bool showHeader = true;
         GridDisplay.Clear();
-        // BUSY CODING HERE  #GridDisplay
+        
         foreach (var productAndQuantity in driverOrderAndProduct.Products)
         {
             var row = new DataGridRow(new List<Product> { new Product {Name = productAndQuantity.name } }, showHeader);
             row.PopulateReadOnlyProducts(productAndQuantity.quantity);
             GridDisplay.Add(row);
             showHeader = false;
-        } 
+        }
     }
 
 
-}
+    private void Button_Pressed(object sender, EventArgs e)
+    {
+        string change = "Departed";
+        var driverOrderAndProduct = picker.SelectedItem as DriverOrderAndProduct;
+        var user = new User();
+
+        App.RuralRouteRepository.UpdateDelivery(change, driverOrderAndProduct.Order.Id);
+        App.RuralRouteRepository.UpdateDeliveryDriver(App.user.Id, driverOrderAndProduct.Order.Id);
+        picker.SelectedItem = null;
+        PopulateCustomers();
+    }
+
+    }

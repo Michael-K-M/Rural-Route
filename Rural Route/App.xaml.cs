@@ -7,6 +7,9 @@ namespace Rural_Route
     {
 
         public static Database RuralRouteRepository = new Database();
+        public static User user;
+        
+        
         public App()
         {
             InitializeComponent();
@@ -22,6 +25,7 @@ namespace Rural_Route
 
             var loginPage = (MainPage) button.Parent.Parent.Parent;
             var loggedInUser = App.RuralRouteRepository.SignInUser(loginPage.UserName, loginPage.Password);
+            user = loggedInUser;
             if (loggedInUser == null)
             {
                 Current.MainPage.DisplayAlert("ERROR!", "Sorry but your username or password is incorrect.", "Retry");
