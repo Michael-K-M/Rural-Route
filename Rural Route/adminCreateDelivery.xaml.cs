@@ -61,7 +61,7 @@ public partial class adminCreateDelivery : ContentPage
 
         App.RuralRouteRepository.CreateOrder(order, orderProducts);
 
-        picker.SelectedItem = "";
+        picker.SelectedItem = null;
         txt_customerAddress.Text = "";
         GridDisplay.Clear();
         PopulateGridView();

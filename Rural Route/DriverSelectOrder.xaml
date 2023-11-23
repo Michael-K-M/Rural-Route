@@ -31,9 +31,9 @@ Title="Select Order"
         </ScrollView>
 
         <Button Text="Start Delivery"
-     Pressed="Button_Pressed"
-    VerticalOptions="EndAndExpand"
-    HorizontalOptions="Center"
+                Pressed="Button_Pressed"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"
      />
     </VerticalStackLayout>
 </ContentPage>

@@ -22,6 +22,10 @@
     Title="Create Order"
     ContentTemplate="{DataTemplate local:adminCreateDelivery}"
     Route="adminCreateDelivery" />
+    <ShellContent
+    Title="Order Status"
+    ContentTemplate="{DataTemplate local:AdminDeliveryStatusCheck}"
+    Route="AdminDeliveryStatusCheck" />
 
     <ShellContent
     Title="Create Customer"

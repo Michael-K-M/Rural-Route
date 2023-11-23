@@ -56,6 +56,8 @@ public partial class DriverSelectOrder : ContentPage
         App.RuralRouteRepository.UpdateDelivery(change, driverOrderAndProduct.Order.Id);
         App.RuralRouteRepository.UpdateDeliveryDriver(App.user.Id, driverOrderAndProduct.Order.Id);
         picker.SelectedItem = null;
+        txt_customerAddress.Text = "";
+        GridDisplay.Clear();
         PopulateCustomers();
     }
 

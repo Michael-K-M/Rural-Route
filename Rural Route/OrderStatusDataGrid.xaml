@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rural_Route.OrderStatusDataGrid"
+             Title="OrderStatusDataGrid">
+    <StackLayout HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
+        <Grid x:Name="GridHeader" IsVisible="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 **HEADER** -->
+            <Frame Grid.Column="0" Padding="0.01" BorderColor="white">
+                <Label Text="Company" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+            <Frame Grid.Column="1"  Padding="0.01" BorderColor="white">
+                <Label Text="Location" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+            <Frame Grid.Column="2"  Padding="0.01" BorderColor="white">
+                <Label Text="Date" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+            <Frame Grid.Column="3"  Padding="0.01" BorderColor="white">
+                <Label Text="Driver" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 -->
+            <Frame x:Name="FramePicker" Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0">
+                <Label x:Name="CompanyName" Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+            <Frame x:Name="FrameLable" Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0" IsVisible="false">
+                <Label x:Name="CompanyLocation" Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+            <Frame Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0">
+                <Label x:Name="Date" Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+            <Frame Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0">
+                <Label x:Name="DriverName" Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+        </Grid>
+    </StackLayout>
+</ContentPage>
