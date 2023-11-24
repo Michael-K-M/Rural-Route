@@ -185,10 +185,11 @@ namespace Rural_Route.Data
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 var displayOrderName = $"""
-                Select c.customer_id, c.customer_name, o.order_id, o.location, o.datetime
+                Select c.customer_id, c.customer_name, o.order_id, o.location, o.datetime, o.order_status, u.firstname
                 from um.orders o
                 join um.customer c on c.customer_id = o.customer_id 
-                where o.order_status = 'Pending'
+                left join um.user u on u.userid = o.driver_id
+                
                 """;
 
                 connection.Open();
@@ -201,13 +202,15 @@ namespace Rural_Route.Data
                             var driverOrderAndProduct = new DriverOrderAndProduct();
                             driverOrderAndProduct.Order = new Order();
                             driverOrderAndProduct.Customer = new Customer();
+                            driverOrderAndProduct.Driver = new User();
                             driverOrderAndProduct.Products = new List<(string name, int quantity)>();
                             driverOrderAndProduct.Customer.Id = reader.GetInt32("customer_id");
                             driverOrderAndProduct.Customer.Name = reader.GetString("customer_name");
                             driverOrderAndProduct.Order.Id = reader.GetInt32("order_id");
                             driverOrderAndProduct.Order.DateTime = reader.GetDateTime("datetime");
                             driverOrderAndProduct.Order.Location = reader.GetString("location");
-
+                            driverOrderAndProduct.Order.OrderStatus = reader.GetString("order_status");
+                            driverOrderAndProduct.Driver.Name = reader ["firstname"]as String;
                             driverOrderAndProductList.Add(driverOrderAndProduct);
                         }
                     }

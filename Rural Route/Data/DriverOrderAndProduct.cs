@@ -12,6 +12,8 @@ namespace Rural_Route.Data
         public Customer Customer { get; set; }
         public List<(string name, int quantity)> Products { get; set; }
 
+        public User Driver { get; set; }
+
         public override string ToString()
         {
             return Customer.Name;

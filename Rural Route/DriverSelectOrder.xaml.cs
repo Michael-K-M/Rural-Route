@@ -21,7 +21,7 @@ public partial class DriverSelectOrder : ContentPage
     {
         var customerOrderList = App.RuralRouteRepository.DisplayOrder();
 
-        picker.ItemsSource = customerOrderList;
+        picker.ItemsSource = customerOrderList.Where(x => x.Order.OrderStatus == "Pending").ToList();
         //orderid = picker.SelectedIndex;
     }
 

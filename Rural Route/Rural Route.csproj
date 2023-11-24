@@ -93,7 +93,7 @@
 	  <MauiXaml Update="DriverSelectOrder.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="OrderStatusDataGrid.xaml">
+	  <MauiXaml Update="Views\OrderStatusGridRow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="SalesRepHomepage.xaml">
@@ -118,6 +118,9 @@
 	  </Compile>
 	  <Compile Update="DriverFlyOutShell.xaml.cs">
 	    <DependentUpon>DriverFlyOutShell.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\OrderStatusGridRow.xaml.cs">
+	    <DependentUpon>OrderStatusGridRow.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
