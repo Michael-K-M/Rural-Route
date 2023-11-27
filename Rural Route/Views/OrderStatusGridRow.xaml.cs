@@ -2,7 +2,7 @@ using Rural_Route.Data;
 
 namespace Rural_Route;
 
-public partial class OrderStatusGridRow : ContentPage
+public partial class OrderStatusGridRow : ContentView
 {
     private readonly DriverOrderAndProduct _driverOrderAndProduct;
 

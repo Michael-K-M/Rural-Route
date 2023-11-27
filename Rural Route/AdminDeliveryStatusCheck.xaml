@@ -11,24 +11,24 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <HorizontalStackLayout Margin="20" >
+        <StackLayout Margin="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
             
             <Button Text="Pending Orders"
-            Pressed="Button_Pressed"
+            Pressed="ButtonPending_Pressed"
             VerticalOptions="EndAndExpand"
-            HorizontalOptions="Center"
+            HorizontalOptions="StartAndExpand"
             />
             <Button Text="Departured Orders"
-        
+            Pressed="ButtonDeparted_Pressed"
             VerticalOptions="EndAndExpand"
-            HorizontalOptions="Center"
+            HorizontalOptions="CenterAndExpand"
             />
             <Button Text="Completed Orders"
-        
+            Pressed="ButtonComplete_Pressed"
             VerticalOptions="EndAndExpand"
-            HorizontalOptions="Center"
+            HorizontalOptions="EndAndExpand"
             />
-        </HorizontalStackLayout>
+        </StackLayout>
 
 
 

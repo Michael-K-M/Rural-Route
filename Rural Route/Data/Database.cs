@@ -210,7 +210,7 @@ namespace Rural_Route.Data
                             driverOrderAndProduct.Order.DateTime = reader.GetDateTime("datetime");
                             driverOrderAndProduct.Order.Location = reader.GetString("location");
                             driverOrderAndProduct.Order.OrderStatus = reader.GetString("order_status");
-                            driverOrderAndProduct.Driver.Name = reader ["firstname"]as String;
+                            driverOrderAndProduct.Driver.Name = reader["firstname"] as String;
                             driverOrderAndProductList.Add(driverOrderAndProduct);
                         }
                     }
