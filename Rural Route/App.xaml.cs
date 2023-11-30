@@ -23,7 +23,7 @@ namespace Rural_Route
         {
             var button = (Button)sender;
 
-            var loginPage = (MainPage) button.Parent.Parent.Parent;
+            var loginPage = (MainPage) button.Parent.Parent;
             var loggedInUser = App.RuralRouteRepository.SignInUser(loginPage.UserName, loginPage.Password);
             user = loggedInUser;
             if (loggedInUser == null)

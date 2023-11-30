@@ -2,31 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.AdminCreateProduct"
-             Title="AdminCreateProduct">
+             Title="AdminCreateProduct" BackgroundColor="White">
     
     
     <VerticalStackLayout>
         <Label 
         Text="Lets create a new product"
         VerticalOptions="Center" 
-        HorizontalOptions="Center" />
+        HorizontalOptions="Center" 
+            FontSize="25"
+            TextColor="Black"/>
 
         <!-- Product Name-->
-        <Label Grid.Row="2" Text="Enter product name:" FontSize="16" FontAttributes="Bold"/>
+        <Label Grid.Row="2" Text="Enter product name:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
 
-        <Entry Placeholder="Product Name:" x:Name="txt_productName" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+        <Entry Placeholder="Product Name:" x:Name="txt_productName" BackgroundColor="#c7dbe0" TextColor="Black"/>
 
         <!-- Product Price-->
-        <Label Grid.Row="2" Text="Enter product price:" FontSize="16" FontAttributes="Bold"/>
+        <Label Grid.Row="2" Text="Enter product price:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
 
-        <Entry Placeholder="R" x:Name="txt_productPrice" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+        <Entry Placeholder="R" x:Name="txt_productPrice" BackgroundColor="#c7dbe0" TextColor="Black"/>
 
 
-
+        <Label/>
         <Button Text="Add Product"
              Clicked="Button_Clicked"
             VerticalOptions="Center"
             HorizontalOptions="Center"
+                BackgroundColor="LightGray"
+                TextColor="Black"
              />
 
 

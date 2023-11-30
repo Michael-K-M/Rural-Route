@@ -2,38 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.Admin"
-             Title="Admin"
-               >
+             Title="Admin" BackgroundColor="White">
     <VerticalStackLayout>
         
         <Label 
             Text="Lets create a new user"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            FontSize="25"
+            TextColor="Black"
+            />
 
         <!-- name Information-->
-        <Label Grid.Row="2" Text="Enter name here" FontSize="16" FontAttributes="Bold"/>
+        <Label Grid.Row="2" Text="Enter name here" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
 
-        <Entry Placeholder="name" x:Name="txt_firstname" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+        <Entry Placeholder="name" x:Name="txt_firstname" BackgroundColor="#c7dbe0" TextColor="Black"/>
 
         <!-- Surname Information-->
-        <Label Grid.Row="2" Text="Enter surname here" FontSize="16" FontAttributes="Bold"/>
+        <Label Grid.Row="2" Text="Enter surname here" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
 
-        <Entry Placeholder="surname" x:Name="txt_Surname" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+        <Entry Placeholder="surname" x:Name="txt_Surname" BackgroundColor="#c7dbe0" TextColor="Black"/>
 
 
         <!-- Email Information-->
-        <Label Grid.Row="2" Text="Enter username here" FontSize="16" FontAttributes="Bold"/>
+        <Label Grid.Row="2" Text="Enter username here" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
 
-        <Entry Placeholder="Username" x:Name="txt_Username" BackgroundColor="#c7dbe0" TextColor="#578794"/>
+        <Entry Placeholder="Username" x:Name="txt_Username" BackgroundColor="#c7dbe0" TextColor="Black"/>
 
         <!-- Password Information-->
-        <Label Grid.Row="4" Text="Enter password here" FontSize="16" FontAttributes="Bold"/>
+        <Label Grid.Row="4" Text="Enter password here" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
 
-        <Entry Placeholder="Password" x:Name="txt_Password" BackgroundColor="#c7dbe0" TextColor="#578794" IsPassword="True"/>
+        <Entry Placeholder="Password" x:Name="txt_Password" BackgroundColor="#c7dbe0" TextColor="Black" IsPassword="True"/>
 
         <!-- Possition Information-->
-        
+
         <Picker x:Name="picker"
                 Grid.Row="4" FontSize="16" FontAttributes="Bold"
         Title="Please select a position for the user">
@@ -51,6 +53,8 @@
                 Clicked="Button_Clicked"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
+                BackgroundColor="LightGray"
+                TextColor="Black"
                  />
 
 

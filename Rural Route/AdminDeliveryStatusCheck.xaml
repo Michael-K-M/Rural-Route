@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.AdminDeliveryStatusCheck"
-             Title="AdminDeliveryStatusCheck">
+             Title="AdminDeliveryStatusCheck" BackgroundColor="White">
     
     
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Order Status"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            FontSize="30"
+            TextColor="Black"/>
 
         <StackLayout Margin="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
             
@@ -17,16 +19,22 @@
             Pressed="ButtonPending_Pressed"
             VerticalOptions="EndAndExpand"
             HorizontalOptions="StartAndExpand"
+            BackgroundColor="LightGray"
+            TextColor="Black"
             />
             <Button Text="Departured Orders"
             Pressed="ButtonDeparted_Pressed"
             VerticalOptions="EndAndExpand"
             HorizontalOptions="CenterAndExpand"
+            BackgroundColor="LightGray"
+            TextColor="Black"
             />
             <Button Text="Completed Orders"
             Pressed="ButtonComplete_Pressed"
             VerticalOptions="EndAndExpand"
             HorizontalOptions="EndAndExpand"
+            BackgroundColor="LightGray"
+            TextColor="Black"
             />
         </StackLayout>
 

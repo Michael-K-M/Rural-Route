@@ -2,12 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.DriverEndOrder"
-             Title="DriverEndOrder">
+             Title="DriverEndOrder" BackgroundColor="White">
+    
     <VerticalStackLayout>
         <Label 
             Text="End Order to completion"
+            FontSize="25" FontAttributes="Bold"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            TextColor="Black"
+            />
 
         <Picker x:Name="picker"
         Grid.Row="4" FontSize="16" FontAttributes="Bold " 
@@ -17,10 +21,10 @@
 
         <!-- Customer Location-->
         <Label Grid.Row="2" Text="Location/Address:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
-        <Entry  x:Name="txt_customerAddress" BackgroundColor="#c7dbe0" TextColor="#578794" IsReadOnly="true" />
+        <Entry  x:Name="txt_customerAddress" BackgroundColor="#c7dbe0" TextColor="Black" IsReadOnly="true" />
 
         <Label Grid.Row="2" Text="Date of delivery:" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
-        <Entry x:Name="txt_DeliveryDate" BackgroundColor="#c7dbe0" TextColor="#578794" IsReadOnly="true" />
+        <Entry x:Name="txt_DeliveryDate" BackgroundColor="#c7dbe0" TextColor="Black" IsReadOnly="true" />
 
         <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
             <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
@@ -32,6 +36,8 @@
                 Pressed="Button_Pressed"
                 VerticalOptions="EndAndExpand"
                 HorizontalOptions="Center"
+                BackgroundColor="LightGray"
+                TextColor="Black"
         />
 
 
