@@ -10,5 +10,36 @@
             HorizontalOptions="Center" 
             FontSize="30"
             TextColor="Black"/>
+
+
+        <Grid x:Name="GridHeader" IsVisible="True" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 **HEADER** -->
+            <Frame Grid.Column="0" Padding="0.01" BorderColor="white">
+                <Entry Placeholder="Enter note:" x:Name="txt_ToDo" BackgroundColor="#c7dbe0" TextColor="Black"/>
+            </Frame>
+
+            <Frame Grid.Column="1"  Padding="0.01" BorderColor="white">
+                <Button Text="Add Note"
+                        Clicked="Button_Clicked"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        BackgroundColor="LightGray"
+                        TextColor="Black"
+                        />
+            </Frame>
+        </Grid>
+
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+            <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+
+            </StackLayout>
+        </ScrollView>
+
     </VerticalStackLayout>
 </ContentPage>

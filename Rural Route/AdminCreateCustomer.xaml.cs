@@ -16,7 +16,6 @@ public partial class AdminCreateCustomer : ContentPage
         {
             Name = txt_CustomerName.Text,
            
-
         };
 
         App.RuralRouteRepository.CreateCustomer(createdCustomer);

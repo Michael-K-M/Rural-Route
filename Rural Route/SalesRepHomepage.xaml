@@ -7,10 +7,21 @@
               BackgroundColor="White">
 
     <VerticalStackLayout>
-
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+         Text="Reminder-List:"
+         VerticalOptions="Center" 
+         HorizontalOptions="Center" 
+         FontSize="30"
+         TextColor="Black" 
+        />
+
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+            <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+
+            </StackLayout>
+        </ScrollView>
+
     </VerticalStackLayout>
+    
+    
 </ContentPage>

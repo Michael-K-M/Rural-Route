@@ -125,6 +125,22 @@ namespace Rural_Route.Data
             }
         }
 
+        public void CreateToDo(ToDo todo)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("INSERT INTO um.to_do (description) VALUES (@description) ", connection))
+                {
+                    command.Parameters.Add(new NpgsqlParameter("@description", todo.Description));
+
+                    command.ExecuteNonQuery();
+
+
+                }
+            }
+        }
+
         public List<Customer> SelectCustomerInfo()
         {
             var customerList = new List<Customer>();
@@ -149,6 +165,33 @@ namespace Rural_Route.Data
 
             }
             return customerList;
+        }
+
+        public List<ToDo> SelectToDoInfo()
+        {
+            var todoList = new List<ToDo>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("Select id, description, completed from  um.to_do", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var todo = new ToDo();
+                            todo.Id = reader.GetInt32("id");
+                            todo.Description = reader.GetString("description");
+                            todo.Completed = reader.GetBoolean("completed");
+
+                            todoList.Add(todo);
+                        }
+                    }
+
+                }
+
+            }
+            return todoList;
         }
 
         public List<Product> SelectProductName()
@@ -334,6 +377,27 @@ namespace Rural_Route.Data
             {
                 connection.Open();
                 using (var command = new NpgsqlCommand("UPDATE um.orders SET order_status = '"+ order_status + "' where order_id = '" + order_id + "'", connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (NpgsqlException ex)
+                    {
+                        string nekej = ex.ToString();
+                        throw;
+                    }
+
+                }
+            }
+        }
+
+        public void UpdateToDoList(ToDo todo)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("UPDATE um.to_do SET completed = " + todo.Completed + " where id = " + todo.Id + "", connection))
                 {
                     try
                     {

@@ -12,5 +12,11 @@
              TextColor="Black" 
             />
 
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+            <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+
+            </StackLayout>
+        </ScrollView>
+
     </VerticalStackLayout>
 </ContentPage>

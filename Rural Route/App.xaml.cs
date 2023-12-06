@@ -48,7 +48,7 @@ namespace Rural_Route
             }
             else if (loggedInUser.Pos == Position.SalesRep)
             {
-                //await Navigation.PushAsync(new SalesRepHomepage());
+               // MainPage = new SaleRepFlyOutShell();
             }
         }
     }
