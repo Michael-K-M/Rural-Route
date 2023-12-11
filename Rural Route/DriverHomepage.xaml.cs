@@ -28,7 +28,7 @@ public partial class DriverHomepage : ContentPage
     private void Checkbox_completed_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         var checkbox = sender as CheckBox;
-        var todoView = checkbox.Parent.Parent.Parent.Parent as ToDoGridRow;
+        var todoView = checkbox.Parent.Parent.Parent as ToDoGridRow;
         todoView._todo.Completed = checkbox.IsChecked;
         App.RuralRouteRepository.UpdateToDoList(todoView._todo);
     }
