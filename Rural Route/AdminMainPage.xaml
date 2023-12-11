@@ -41,5 +41,13 @@
             </StackLayout>
         </ScrollView>
 
+
+        <Button Text="Delete"
+        Pressed="ButtonDelete_Pressed"
+        VerticalOptions="EndAndExpand"
+        HorizontalOptions="Center"
+        BackgroundColor="LightGray"
+        TextColor="Black"
+        />
     </VerticalStackLayout>
 </ContentPage>

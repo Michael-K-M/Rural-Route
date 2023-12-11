@@ -5,24 +5,17 @@
 
     <StackLayout HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+        
+        <HorizontalStackLayout>
+                <!-- Row 1 -->
+            
+                <CheckBox IsChecked="False" x:Name="cb_Completed" Color="Black" VerticalOptions="Center"/>
+            
+                <Label x:Name="Description" FontSize="16" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+            
+            </HorizontalStackLayout>
 
-            </Grid.ColumnDefinitions>
-
-            <!-- Row 1 -->
-            <Frame Grid.Column="0" BorderColor="Black" Padding="1" CornerRadius="0">
-                <CheckBox IsChecked="False" x:Name="cb_Completed"/>
-            </Frame>
-
-            <Frame Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0" IsVisible="True">
-                <Label x:Name="Description" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
-            </Frame>
-
-
-        </Grid>
+        
 
 
 

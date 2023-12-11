@@ -433,5 +433,25 @@ namespace Rural_Route.Data
                 }
             }
         }
+        public void DeleteToDoItems()
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("DELETE FROM um.to_do where completed = 'True'", connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (NpgsqlException ex)
+                    {
+                        string nekej = ex.ToString();
+                        throw;
+                    }
+
+                }
+            }
+        }
     }
 }

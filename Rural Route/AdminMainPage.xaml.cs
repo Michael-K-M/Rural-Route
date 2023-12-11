@@ -46,8 +46,15 @@ public partial class AdminMainPage : ContentPage
     private void Checkbox_completed_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         var checkbox = sender as CheckBox;
-        var todoView = checkbox.Parent.Parent.Parent.Parent as ToDoGridRow;
+        var todoView = checkbox.Parent.Parent.Parent as ToDoGridRow;
         todoView._todo.Completed = checkbox.IsChecked;
         App.RuralRouteRepository.UpdateToDoList(todoView._todo);
+    }
+
+    private void ButtonDelete_Pressed(object sender, EventArgs e)
+    {
+        App.RuralRouteRepository.DeleteToDoItems();
+        DisplayAlert("Deleted!", "You have successfully deleted from the To-Do list", "OK");
+        DisplayToDoList();
     }
 }

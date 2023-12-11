@@ -8,7 +8,9 @@ public partial class SalesRepHomepage : ContentPage
 	public SalesRepHomepage()
 	{
 		InitializeComponent();
-	}
+        DisplayToDoList();
+
+    }
 
     public void DisplayToDoList()
     {
