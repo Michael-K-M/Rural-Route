@@ -12,6 +12,19 @@
             HorizontalOptions="Center" 
             FontSize="30"
             TextColor="Black"/>
+        
+        <StackLayout Orientation="Horizontal">
+            <StackLayout HorizontalOptions="StartAndExpand" Padding="50,0,0,0">
+                <Label>Select start date:</Label>
+                <DatePicker x:Name="Date_Picker_Start" HorizontalOptions="Start"
+            TextColor="Black"/>
+             </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand" Padding="0,0,50,0">
+                <Label>Select end date:</Label>
+                <DatePicker x:Name="Date_Picker_End" HorizontalOptions="EndAndExpand"
+            TextColor="Black"/>
+            </StackLayout>
+        </StackLayout>
 
         <StackLayout Margin="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
             
