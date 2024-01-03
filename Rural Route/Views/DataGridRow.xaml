@@ -7,6 +7,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
                 
             </Grid.ColumnDefinitions>
         
@@ -15,14 +16,19 @@
                 <Label Text="Product" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
             </Frame>
 
-            <Frame Grid.Column="1"  Padding="0.01" BorderColor="white">
+            <Frame x:Name="FrameStockHeader" Grid.Column="1"  Padding="0.01" BorderColor="white" IsVisible="False">
+                <Label Text="Available" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+            
+            <Frame Grid.Column="2"  Padding="0.01" BorderColor="white">
                 <Label Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
             </Frame>
 
-            
+
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                
@@ -39,7 +45,11 @@
                 <Label x:Name="ProductName" Text="Quantity" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
             </Frame>
 
-            <Frame Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0">
+            <Frame x:Name="FrameStockCount" Grid.Column="1" BorderColor="Black" Padding="1" CornerRadius="0" IsVisible="false">
+                <Label x:Name="TotalStock" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            </Frame>
+
+            <Frame Grid.Column="2" BorderColor="Black" Padding="1" CornerRadius="0">
                 <Entry Placeholder="" TextColor="Black" x:Name="QuantityEntry"/>
             </Frame>
 

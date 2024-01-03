@@ -1,14 +1,18 @@
 using Rural_Route.Data;
+using System.Collections.ObjectModel;
 
 namespace Rural_Route.Views;
 
 public partial class DataGridRow : ContentView
 {
-    public readonly List<Product> ProductList;
 
+    public ObservableCollection<Product> ProductList = new ObservableCollection<Product>();
+    public Product PreviousProduct;
     public DataGridRow(List<Product> productList, bool showHeader = false)
 	{
-        ProductList = productList;
+        foreach(var item in productList)
+            ProductList.Add(item);
+
         InitializeComponent();
 		GridHeader.IsVisible = showHeader;
         PopulateProduct();
@@ -17,6 +21,27 @@ public partial class DataGridRow : ContentView
     private void PopulateProduct()
     {
         ProductPicker.ItemsSource = ProductList;
+    }
+
+    public void AddStockCount(List<OrderProduct> orderProducts)
+    {
+        FrameStockHeader.IsVisible = true;
+        FrameStockCount.IsVisible = true;
+        if (orderProducts is null)
+            return;
+
+        var orderProduct = orderProducts.FirstOrDefault(x => x.ProductId == ((Product)ProductPicker.SelectedItem)?.Id);
+        if (orderProduct is null)
+            TotalStock.Text = "0";
+        else
+            TotalStock.Text = orderProduct.Quantity.ToString();
+
+
+    }
+
+    public Picker GetPicker()
+    {
+        return ProductPicker;
     }
 
     public bool IsFilledEntry()

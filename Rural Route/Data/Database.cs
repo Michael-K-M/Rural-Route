@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using Microsoft.Maui;
+using System.Reflection.PortableExecutable;
 
 
 namespace Rural_Route.Data
@@ -249,6 +250,47 @@ namespace Rural_Route.Data
         }
 
 
+        public List<OrderProduct> DisplayAvailableQuantity()
+        {
+            var OrderProductList = new List<OrderProduct>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("""
+                        with stock as (
+                    	    select product_id, sum(quantity) as quantity
+                    	    from um.stock
+                    	    group by product_id),
+
+                    	sold as (
+                    	    select product_id, sum(quantity) as quantity
+                    	    from um.order_product op
+                    	    join um.orders o on o.order_id = op.order_id
+                    	    where o.order_status = 'Complete'
+                    	    group by product_id)
+
+                        select COALESCE(so.product_id, st.product_id) as product_id, COALESCE(st.quantity, 0) - COALESCE(so.quantity, 0) as quantity from stock st
+                        full join sold so on st.product_id = so.product_id;
+                    """, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var product = new OrderProduct();
+                            product.ProductId = reader.GetInt32("product_id");
+                            product.Quantity = reader.GetInt32("quantity");
+
+                            OrderProductList.Add(product);
+                        }
+                    }
+
+                }
+
+            }
+            return OrderProductList;
+        }
+
 
         public List<DriverOrderAndProduct> DisplayOrder()
         {
@@ -470,6 +512,24 @@ namespace Rural_Route.Data
                 connection.Open();
                 foreach (var stock in stocks)
                 {
+                    bool isExisting = false;
+                    using (var command = new NpgsqlCommand("update um.stock s set quantity = quantity + @quantity where product_id = @product_id and creation_date = current_date returning product_id;", connection))
+                    {
+                        command.Parameters.Add(new NpgsqlParameter("@quantity", stock.Quantity));
+                        command.Parameters.Add(new NpgsqlParameter("@product_id", stock.ProductId));
+
+                        using (NpgsqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                isExisting = true;
+                            }
+                        }
+                    }
+
+                    if (isExisting)
+                        continue;
+
                     using (var command = new NpgsqlCommand("INSERT INTO um.stock (quantity, product_id) VALUES (@quantity, @product_id) ", connection))
                     {
 
@@ -477,23 +537,8 @@ namespace Rural_Route.Data
                         command.Parameters.Add(new NpgsqlParameter("@product_id", stock.ProductId));
 
                         command.ExecuteNonQuery();
-
                     }
                 }
-                /* connection.Open();
-                 using (var command = new NpgsqlCommand("insert into um.stock SET quantity = '" + orderproducts + "' where stock_id = '" + orderproducts + "'", connection))
-                 {
-                     try
-                     {
-                         command.ExecuteNonQuery();
-                     }
-                     catch (NpgsqlException ex)
-                     {
-                         string nekej = ex.ToString();
-                         throw;
-                     }
-
-         }*/
             }
         }
         public void DeleteToDoItems()
