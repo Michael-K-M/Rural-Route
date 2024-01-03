@@ -21,6 +21,10 @@ public partial class DataGridRow : ContentView
 
     public bool IsFilledEntry()
 	{
+        if (ProductPicker.IsEnabled == false) {
+            return false;
+        }
+       
 		return !string.IsNullOrEmpty(QuantityEntry.Text);
 	}
 

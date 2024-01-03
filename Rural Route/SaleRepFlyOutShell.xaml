@@ -11,6 +11,10 @@
     Title="Homepage"
     ContentTemplate="{DataTemplate local:SalesRepHomepage}"
     Route="SalesRepHomepage" />
-    
+
+    <ShellContent
+Title="Stock"
+ContentTemplate="{DataTemplate local:SaleRepStock}"
+Route="SaleRepStock" />
 
 </Shell>

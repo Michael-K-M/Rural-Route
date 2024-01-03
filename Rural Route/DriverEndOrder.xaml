@@ -32,7 +32,7 @@
             </StackLayout>
         </ScrollView>
 
-        <Button Text="Start Delivery"
+        <Button Text="End Delivery"
                 Pressed="Button_Pressed"
                 VerticalOptions="EndAndExpand"
                 HorizontalOptions="Center"

@@ -10,6 +10,7 @@ using System.Data;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 using Microsoft.Maui;
 
+
 namespace Rural_Route.Data
 {
     public class Database
@@ -192,6 +193,33 @@ namespace Rural_Route.Data
 
             }
             return todoList;
+        }
+
+        public List<Stock> SelectStockInfo()
+        {
+            var stockList = new List<Stock>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("Select stock_id, quantity, product_id from  um.stock where creation_date = current_date", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var stock = new Stock();
+                            stock.Id = reader.GetInt32("stock_id");
+                            stock.Quantity = reader.GetInt32("quantity");
+                            stock.ProductId = reader.GetInt32("product_id");
+
+                            stockList.Add(stock);
+                        }
+                    }
+
+                }
+
+            }
+            return stockList;
         }
 
         public List<Product> SelectProductName()
@@ -431,6 +459,41 @@ namespace Rural_Route.Data
                     }
 
                 }
+            }
+        }
+
+        public void UpdateStockNumbers(List<Stock> stocks)
+        {
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                foreach (var stock in stocks)
+                {
+                    using (var command = new NpgsqlCommand("INSERT INTO um.stock (quantity, product_id) VALUES (@quantity, @product_id) ", connection))
+                    {
+
+                        command.Parameters.Add(new NpgsqlParameter("@quantity", stock.Quantity));
+                        command.Parameters.Add(new NpgsqlParameter("@product_id", stock.ProductId));
+
+                        command.ExecuteNonQuery();
+
+                    }
+                }
+                /* connection.Open();
+                 using (var command = new NpgsqlCommand("insert into um.stock SET quantity = '" + orderproducts + "' where stock_id = '" + orderproducts + "'", connection))
+                 {
+                     try
+                     {
+                         command.ExecuteNonQuery();
+                     }
+                     catch (NpgsqlException ex)
+                     {
+                         string nekej = ex.ToString();
+                         throw;
+                     }
+
+         }*/
             }
         }
         public void DeleteToDoItems()
