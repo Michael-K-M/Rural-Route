@@ -4,7 +4,7 @@
              x:Class="Rural_Route.SaleRepStock"
              Title="SaleRepStock">
     <VerticalStackLayout>
-        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="10">
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="150">
             <StackLayout x:Name="GridDisplayStock" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
             </StackLayout>

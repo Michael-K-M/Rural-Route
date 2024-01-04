@@ -25,14 +25,14 @@ public partial class SaleRepStock : ContentPage
         OrderProductList = App.RuralRouteRepository.DisplayAvailableQuantity();
         var stockList = App.RuralRouteRepository.SelectStockInfo();
         bool showHeader = true;
-        GridDisplay.Clear();
+        GridDisplayStock.Clear();
 
         foreach (var stock in stockList)
         {
             var product = ProductList.First(x => x.Id == stock.ProductId);
             var row = new DataGridRow(new List<Product> { product }, showHeader);
             row.PopulateReadOnlyProducts(stock.Quantity);
-            GridDisplay.Add(row);
+            GridDisplayStock.Add(row);
             showHeader = false;
           
         }
