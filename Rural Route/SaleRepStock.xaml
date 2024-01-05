@@ -4,6 +4,15 @@
              x:Class="Rural_Route.SaleRepStock"
              Title="SaleRepStock"  BackgroundColor="White">
     <VerticalStackLayout>
+
+        <Label 
+    Text="Stock Count"
+    VerticalOptions="Center" 
+    HorizontalOptions="Center" 
+    FontSize="25"
+    TextColor="Black"/>
+        
+        
         <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="150">
             <StackLayout x:Name="GridDisplayStock" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 

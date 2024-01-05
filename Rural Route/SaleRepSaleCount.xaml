@@ -5,6 +5,12 @@
              Title="SaleRepSaleCount"  BackgroundColor="White">
     <VerticalStackLayout>
 
+        <Label 
+    Text="Sales"
+    VerticalOptions="Center" 
+    HorizontalOptions="Center" 
+    FontSize="25"
+    TextColor="Black"/>
 
 
         <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">

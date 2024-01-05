@@ -2,10 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rural_Route.adminViewStock"
-             Title="adminViewStock">
+             Title="adminViewStock" BackgroundColor="White">
     <VerticalStackLayout>
+        <Label 
+            Text="Stock"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            FontSize="25"
+            TextColor="Black"/>
 
-        
         <StackLayout Orientation="Horizontal">
             <StackLayout HorizontalOptions="StartAndExpand" Padding="50,0,0,0">
                 <Label>Select start date:</Label>
