@@ -196,7 +196,7 @@ namespace Rural_Route.Data
             return todoList;
         }
 
-        public List<Stock> SelectStockInfo()
+        public List<Stock> SelectTodayStockInfo()
         {
             var stockList = new List<Stock>();
             using (var connection = new NpgsqlConnection(connectionString))
@@ -213,6 +213,33 @@ namespace Rural_Route.Data
                             stock.Quantity = reader.GetInt32("quantity");
                             stock.ProductId = reader.GetInt32("product_id");
 
+                            stockList.Add(stock);
+                        }
+                    }
+
+                }
+
+            }
+            return stockList;
+        }
+
+        public List<Stock> SelectAllStockInfo()
+        {
+            var stockList = new List<Stock>();
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("Select stock_id, quantity, product_id, creation_date from  um.stock ", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var stock = new Stock();
+                            stock.Id = reader.GetInt32("stock_id");
+                            stock.Quantity = reader.GetInt32("quantity");
+                            stock.ProductId = reader.GetInt32("product_id");
+                            stock.CreationDate = reader.GetDateTime("creation_date");
                             stockList.Add(stock);
                         }
                     }

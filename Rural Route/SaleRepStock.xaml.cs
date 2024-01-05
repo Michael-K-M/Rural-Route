@@ -20,10 +20,11 @@ public partial class SaleRepStock : ContentPage
 
     }
 
+    // display updated stock
     public void DisplayStockDisplay()
     {
         OrderProductList = App.RuralRouteRepository.DisplayAvailableQuantity();
-        var stockList = App.RuralRouteRepository.SelectStockInfo();
+        var stockList = App.RuralRouteRepository.SelectTodayStockInfo();
         bool showHeader = true;
         GridDisplayStock.Clear();
 
@@ -43,7 +44,7 @@ public partial class SaleRepStock : ContentPage
 
         for(int i = 0; i < ProductList.Count; i++) {
             bool showHeader = i == 0;
-            var stockView = new DataGridRow(ProductList, showHeader);
+            var stockView = new AddStockGridRow(ProductList, showHeader);
             stockView.AddStockCount(null);
             GridDisplay.Add(stockView);
             var picker = stockView.GetPicker();
@@ -60,7 +61,7 @@ public partial class SaleRepStock : ContentPage
         //Fetch Avalible Quantity
 
         Product clearedProduct = null;
-        var parent = picker.Parent.Parent.Parent.Parent as DataGridRow;
+        var parent = picker.Parent.Parent.Parent.Parent as AddStockGridRow;
         
         //Get previous picker item to re-add them to other pickers
         if (parent.PreviousProduct is null || parent.PreviousProduct != picker.SelectedItem)
@@ -73,7 +74,7 @@ public partial class SaleRepStock : ContentPage
 
         foreach (var row in GridDisplay.Children)
         {
-            var gridRow = (DataGridRow)row;
+            var gridRow = (AddStockGridRow)row;
             var otherPicker = gridRow.GetPicker();
             if (picker == otherPicker)
                 continue;
@@ -97,7 +98,7 @@ public partial class SaleRepStock : ContentPage
         
         foreach (var row in GridDisplay.Children)
         {
-            var gridRow = (DataGridRow)row;
+            var gridRow = (AddStockGridRow)row;
             if (gridRow.IsFilledEntry())
             {
                 Stock stock = new Stock();

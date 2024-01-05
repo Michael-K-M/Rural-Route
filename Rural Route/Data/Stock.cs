@@ -11,7 +11,7 @@ namespace Rural_Route.Data
         public int Id { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
-        public DateTime creation_date { get; set; }
+        public DateTime CreationDate { get; set; }
 
     }
 }

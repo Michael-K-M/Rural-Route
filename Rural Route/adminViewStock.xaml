@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rural_Route.adminViewStock"
+             Title="adminViewStock">
+    <VerticalStackLayout>
+
+        
+        <StackLayout Orientation="Horizontal">
+            <StackLayout HorizontalOptions="StartAndExpand" Padding="50,0,0,0">
+                <Label>Select start date:</Label>
+                <DatePicker x:Name="Date_Picker_Start" HorizontalOptions="Start"
+TextColor="Black"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand" Padding="0,0,50,0">
+                <Label>Select end date:</Label>
+                <DatePicker x:Name="Date_Picker_End" HorizontalOptions="EndAndExpand"
+TextColor="Black"/>
+            </StackLayout>
+        </StackLayout>
+
+
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+            <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+
+            </StackLayout>
+        </ScrollView>
+
+
+
+       
+        
+
+    </VerticalStackLayout>
+</ContentPage>

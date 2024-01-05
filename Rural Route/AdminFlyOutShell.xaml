@@ -14,6 +14,11 @@
     Route="AdminMainPage" />
 
     <ShellContent
+    Title="Check Stock"
+    ContentTemplate="{DataTemplate local:adminViewStock}"
+    Route="adminViewStock" />
+
+    <ShellContent
         Title="Create Product"
         ContentTemplate="{DataTemplate local:AdminCreateProduct}"
         Route="AdminCreateProduct" />
@@ -42,5 +47,5 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
-    
+
 </Shell>

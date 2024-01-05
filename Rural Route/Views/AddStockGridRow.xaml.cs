@@ -3,31 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Rural_Route.Views;
 
-public partial class DataGridRow : ContentView
+public partial class AddStockGridRow : ContentView
 {
 
     public ObservableCollection<Product> ProductList = new ObservableCollection<Product>();
     public Product PreviousProduct;
-    public DataGridRow(List<Product> productList, bool showHeader = false, string product = null, string quantity = null)
+
+    public AddStockGridRow(List<Product> productList, bool showHeader = false)
 	{
-        InitializeComponent();
-
-
-        if (string.IsNullOrEmpty(product) == false) 
-        {
-            productLable.Text = product;        
-        }
-
-        if (string.IsNullOrEmpty(quantity) == false)
-        {
-            quantityLable.Text = quantity;
-        }
-
         foreach (var item in productList)
             ProductList.Add(item);
 
-        
-		GridHeader.IsVisible = showHeader;
+        InitializeComponent();
+        GridHeader.IsVisible = showHeader;
         PopulateProduct();
     }
 
@@ -36,7 +24,21 @@ public partial class DataGridRow : ContentView
         ProductPicker.ItemsSource = ProductList;
     }
 
-    
+    public void AddStockCount(List<OrderProduct> orderProducts)
+    {
+        FrameStockHeader.IsVisible = true;
+        FrameStockCount.IsVisible = true;
+        if (orderProducts is null)
+            return;
+
+        var orderProduct = orderProducts.FirstOrDefault(x => x.ProductId == ((Product)ProductPicker.SelectedItem)?.Id);
+        if (orderProduct is null)
+            TotalStock.Text = "0";
+        else
+            TotalStock.Text = orderProduct.Quantity.ToString();
+
+
+    }
 
     public Picker GetPicker()
     {
@@ -44,19 +46,20 @@ public partial class DataGridRow : ContentView
     }
 
     public bool IsFilledEntry()
-	{
-        if (ProductPicker.IsEnabled == false) {
+    {
+        if (ProductPicker.IsEnabled == false)
+        {
             return false;
         }
-       
-		return !string.IsNullOrEmpty(QuantityEntry.Text);
-	}
 
-	public (int productId, int amount) GetGridInfo()
-	{
+        return !string.IsNullOrEmpty(QuantityEntry.Text);
+    }
+
+    public (int productId, int amount) GetGridInfo()
+    {
         var product = ProductPicker.SelectedItem as Product;
 
-		return (product.Id, int.Parse(QuantityEntry.Text));
+        return (product.Id, int.Parse(QuantityEntry.Text));
     }
 
     public void PopulateReadOnlyProducts(int quantity)
