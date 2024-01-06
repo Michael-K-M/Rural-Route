@@ -9,8 +9,13 @@ public partial class AdminMainPage : ContentPage
     public AdminMainPage()
 	{
 		InitializeComponent();
-        DisplayToDoList();
 
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        DisplayToDoList();
     }
 
     private void Button_Clicked(object sender, EventArgs e)

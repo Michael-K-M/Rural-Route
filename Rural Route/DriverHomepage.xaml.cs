@@ -12,6 +12,11 @@ public partial class DriverHomepage : ContentPage
         DisplayToDoList();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        DisplayToDoList();
+    }
     public void DisplayToDoList()
     {
         var todoList = App.RuralRouteRepository.SelectToDoInfo();

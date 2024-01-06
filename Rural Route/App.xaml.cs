@@ -5,24 +5,29 @@ namespace Rural_Route
 {
     public partial class App : Application
     {
-
         public static Database RuralRouteRepository = new Database();
-        public static User user;
+        private LocalDatabase localDatabase;
         
+        public static User user;
         
         public App()
         {
             InitializeComponent();
-            var logginPage = new MainPage();
-            MainPage = logginPage;
-            logginPage.LoggedInButton.Clicked += LoggedInButton_Clicked;
-
+            localDatabase = new LocalDatabase();
+            var loggedInUser = localDatabase.GetLoggedInUser();
+            if(loggedInUser is not null)
+                SetMainPage(loggedInUser);
+            else
+            {
+                var logginPage = new MainPage();
+                MainPage = logginPage;
+                logginPage.LoggedInButton.Clicked += LoggedInButton_Clicked;
+            }
         }
 
         private void LoggedInButton_Clicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
-
             var loginPage = (MainPage) button.Parent.Parent;
             var loggedInUser = App.RuralRouteRepository.SignInUser(loginPage.UserName, loginPage.Password);
             user = loggedInUser;
@@ -31,7 +36,8 @@ namespace Rural_Route
                 Current.MainPage.DisplayAlert("ERROR!", "Sorry but your username or password is incorrect.", "Retry");
                 return;
             }
-            
+
+            localDatabase.SaveUser(user);
             SetMainPage(loggedInUser);
         }
 
@@ -40,16 +46,39 @@ namespace Rural_Route
             // send user to location
             if (loggedInUser.Pos == Position.Admin)
             {
-                MainPage = new AdminFlyOutShell();
+                var flyout = new AdminFlyOutShell();
+                flyout.Navigated += OnNavigated;
+                MainPage = flyout;
             }
             else if (loggedInUser.Pos == Position.Driver)
             {
-                MainPage = new DriverFlyOutShell();
+
+                var flyout = new DriverFlyOutShell();
+                flyout.Navigated += OnNavigated;
+                MainPage = flyout;
             }
             else if (loggedInUser.Pos == Position.SalesRep)
             {
-                MainPage = new SaleRepFlyOutShell();
+                var flyout = new SaleRepFlyOutShell();
+                flyout.Navigated += OnNavigated;
+                MainPage = flyout;
             }
+        }
+
+        private void OnNavigated(object sender, ShellNavigatedEventArgs e)
+        {
+            if (e.Current.Location.OriginalString == "//"+nameof(MainPage))
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    localDatabase.DeleteUser();
+                    var loginPage = new MainPage();
+                    MainPage = loginPage;
+                    loginPage.LoggedInButton.Clicked += LoggedInButton_Clicked;
+                
+                });
+
+                }
         }
     }
 }
