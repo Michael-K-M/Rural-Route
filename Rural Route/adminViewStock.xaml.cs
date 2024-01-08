@@ -20,7 +20,11 @@ public partial class adminViewStock : ContentPage
         DisplayStockDisplay();
     }
 
-
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        DisplayStockDisplay();
+    }
 
     private void Date_Picker_DateSelected(object sender, DateChangedEventArgs e)
     {

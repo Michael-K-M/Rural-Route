@@ -16,10 +16,15 @@
 Title="Stock"
 ContentTemplate="{DataTemplate local:SaleRepStock}"
 Route="SaleRepStock" />
-
+  
     <ShellContent
 Title="Sale"
 ContentTemplate="{DataTemplate local:SaleRepSaleCount}"
 Route="SaleRepSaleCount" />
+
+    <ShellContent
+    Title="Logout"
+    ContentTemplate="{DataTemplate local:MainPage}"
+    Route="MainPage" />
 
 </Shell>

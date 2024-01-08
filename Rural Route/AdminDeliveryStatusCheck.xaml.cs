@@ -14,6 +14,12 @@ public partial class AdminDeliveryStatusCheck : ContentPage
         Date_Picker_Start.Date = DateTime.Now.AddMonths(-1);
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _driverOrderAndProducts = App.RuralRouteRepository.DisplayOrder();
+        Date_Picker_Start.Date = DateTime.Now.AddMonths(-1);
+    }
 
     private void ButtonPending_Pressed(object sender, EventArgs e)
     {
@@ -33,6 +39,8 @@ public partial class AdminDeliveryStatusCheck : ContentPage
         var endDate = Date_Picker_End.Date;
         PopulateOrderStats("Complete", startDate, endDate);
     }
+
+    
 
     private void PopulateOrderStats(string status, DateTime? startDate = null, DateTime? endDate = null)
     {

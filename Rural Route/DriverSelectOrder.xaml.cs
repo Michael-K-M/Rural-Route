@@ -17,6 +17,12 @@ public partial class DriverSelectOrder : ContentPage
         picker.SelectedIndexChanged += Picker_SelectedIndexChanged;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        PopulateCustomers();
+    }
+
     private void PopulateCustomers()
     {
         var customerOrderList = App.RuralRouteRepository.DisplayOrder();

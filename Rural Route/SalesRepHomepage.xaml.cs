@@ -12,6 +12,12 @@ public partial class SalesRepHomepage : ContentPage
 
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        DisplayToDoList();
+    }
+
     public void DisplayToDoList()
     {
         var todoList = App.RuralRouteRepository.SelectToDoInfo();
