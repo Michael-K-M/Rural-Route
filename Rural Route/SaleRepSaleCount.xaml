@@ -19,7 +19,7 @@
             </StackLayout>
         </ScrollView>
 
-        <Button Text="Add Order"
+        <Button Text="Add Sale"
      Pressed="Button_Pressed"
     VerticalOptions="EndAndExpand"
     HorizontalOptions="Center"

@@ -25,7 +25,7 @@ TextColor="Black"/>
         </StackLayout>
 
 
-        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="500">
             <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
             </StackLayout>

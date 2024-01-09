@@ -13,14 +13,14 @@
     TextColor="Black"/>
         
         
-        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="150">
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="210">
             <StackLayout x:Name="GridDisplayStock" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
             </StackLayout>
         </ScrollView>
-        
 
-        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="250">
+
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="260" Margin="0,50,0,20">
             <StackLayout x:Name="GridDisplay" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
 
             </StackLayout>

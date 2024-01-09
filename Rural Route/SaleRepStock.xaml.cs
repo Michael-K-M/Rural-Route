@@ -55,7 +55,8 @@ public partial class SaleRepStock : ContentPage
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
         var picker = (Picker) sender;
-        if (picker.SelectedIndex == -1)
+
+            if (picker.SelectedIndex == -1)
             return;
 
         //Fetch Avalible Quantity
@@ -72,22 +73,21 @@ public partial class SaleRepStock : ContentPage
 
         parent.AddStockCount(OrderProductList);
 
-        foreach (var row in GridDisplay.Children)
-        {
-            var gridRow = (AddStockGridRow)row;
-            var otherPicker = gridRow.GetPicker();
-            if (picker == otherPicker)
-                continue;
-            otherPicker.SelectedIndexChanged -= Picker_SelectedIndexChanged;
+            foreach (var row in GridDisplay.Children)
+            {
+                var gridRow = (AddStockGridRow)row;
+                var otherPicker = gridRow.GetPicker();
+                if (picker == otherPicker)
+                    continue;
+                otherPicker.SelectedIndexChanged -= Picker_SelectedIndexChanged;
 
-            if (clearedProduct is not null)
-                otherPicker.ItemsSource.Add(clearedProduct);
-            
-            var temp = otherPicker.SelectedItem as Product;
-            otherPicker.ItemsSource.Remove(picker.SelectedItem);
-            otherPicker.SelectedItem = temp;
-            otherPicker.SelectedIndexChanged += Picker_SelectedIndexChanged;
+                if (clearedProduct is not null)
+                    otherPicker.ItemsSource.Add(clearedProduct);
 
+                var temp = otherPicker.SelectedItem as Product;
+                otherPicker.ItemsSource.Remove(picker.SelectedItem);
+                otherPicker.SelectedItem = temp;
+                otherPicker.SelectedIndexChanged += Picker_SelectedIndexChanged;
         }
     }
 
@@ -110,11 +110,21 @@ public partial class SaleRepStock : ContentPage
             }
         }
 
-        App.RuralRouteRepository.UpdateStockNumbers(stockList);
+        if (stockList.Any())
+        {
+            App.RuralRouteRepository.UpdateStockNumbers(stockList);
 
-        GridDisplay.Clear();
-        DisplayStockDisplay();
-        PopulateGridView();
-    }
+            GridDisplay.Clear();
+            DisplayStockDisplay();
+            PopulateGridView();
+
+            DisplayAlert("Great News!", "You have successfully added new stock", "OK");
+        }
+        else
+        {
+            DisplayAlert("***BAD NEWS***", "You need enter a product and/or quantity", "OK");
+        }
+        
+      }
 
     }
