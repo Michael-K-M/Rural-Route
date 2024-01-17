@@ -46,7 +46,7 @@ public partial class adminCreateDelivery : ContentPage
 
         else {
 
-            if (order.Location == null)
+            if (txt_customerAddress.Text == null)
             {
                 order.CustomerId = (picker.SelectedItem as Customer).Id;
                 order.OrderStatus = "Pending";

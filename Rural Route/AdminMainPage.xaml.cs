@@ -10,14 +10,16 @@ public partial class AdminMainPage : ContentPage
     public AdminMainPage()
 	{
 		InitializeComponent();
-        _driverOrderAndProducts = App.RuralRouteRepository.DisplayOrder();
-        PopulateOrderStats("Pending");
+        
+        
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
         DisplayToDoList();
+        _driverOrderAndProducts = App.RuralRouteRepository.DisplayOrder();
+        PopulateOrderStats("Pending");
     }
 
     private void Button_Clicked(object sender, EventArgs e)

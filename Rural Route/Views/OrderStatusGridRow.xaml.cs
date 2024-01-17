@@ -18,7 +18,7 @@ public partial class OrderStatusGridRow : ContentView
     {
         CompanyName.Text = _driverOrderAndProduct.Customer.Name;
         CompanyLocation.Text = _driverOrderAndProduct.Order.Location;
-        Date.Text = _driverOrderAndProduct.Order.DateTime.ToString();
+        Date.Text = _driverOrderAndProduct.Order.DateTime.ToString("dd/MM/yyyy");
         DriverName.Text = _driverOrderAndProduct.Driver.Name;
     }
 
