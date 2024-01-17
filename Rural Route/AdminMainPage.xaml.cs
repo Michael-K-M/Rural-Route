@@ -6,10 +6,12 @@ namespace Rural_Route;
 public partial class AdminMainPage : ContentPage
 {
     List<string> tasks = new List<string>();
+    private List<DriverOrderAndProduct> _driverOrderAndProducts;
     public AdminMainPage()
 	{
 		InitializeComponent();
-
+        _driverOrderAndProducts = App.RuralRouteRepository.DisplayOrder();
+        PopulateOrderStats("Pending");
     }
 
     protected override void OnAppearing()
@@ -62,4 +64,23 @@ public partial class AdminMainPage : ContentPage
         DisplayAlert("Deleted!", "You have successfully deleted from the To-Do list", "OK");
         DisplayToDoList();
     }
+
+    private void PopulateOrderStats(string status, DateTime? startDate = null, DateTime? endDate = null)
+    {
+        bool showHeader = true;
+        var filteredList = _driverOrderAndProducts;
+        GridDisplayPending.Clear();
+        if (startDate.HasValue && endDate.HasValue)
+        {
+            filteredList = _driverOrderAndProducts.Where(x => x.Order.DateTime >= startDate.Value && x.Order.DateTime <= endDate.Value).ToList();
+        }
+
+        foreach (var driverOrderAndProduct in filteredList.Where(x => x.Order.OrderStatus == status).ToList())
+        {
+            var row = new OrderStatusGridRow(driverOrderAndProduct, showHeader);
+            showHeader = false;
+            GridDisplayPending.Add(row);
+        }
+    }
+
 }
