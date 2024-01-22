@@ -468,12 +468,33 @@ namespace Rural_Route.Data
             return driverOrderAndProductList;
         }
 
-        public void UpdateDelivery(string order_status, int order_id)
+        public void UpdateDeliverystart(string order_status, DateTime start_time, int order_id)
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                using (var command = new NpgsqlCommand("UPDATE um.orders SET order_status = '"+ order_status + "' where order_id = '" + order_id + "'", connection))
+                using (var command = new NpgsqlCommand("UPDATE um.orders SET order_status = '"+ order_status +"', start_time = '"+start_time+"' where order_id = '" + order_id + "'", connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (NpgsqlException ex)
+                    {
+                        string nekej = ex.ToString();
+                        throw;
+                    }
+
+                }
+            }
+        }
+
+        public void UpdateDeliveryEnd(string order_status, DateTime end_time, int order_id)
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand("UPDATE um.orders SET order_status = '" + order_status + "', end_time = '" + end_time + "' where order_id = '" + order_id + "'", connection))
                 {
                     try
                     {

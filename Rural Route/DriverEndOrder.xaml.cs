@@ -44,11 +44,13 @@ public partial class DriverEndOrder : ContentPage
 
     private void Button_Pressed(object sender, EventArgs e)
     {
+
         string change = "Complete";
         var driverOrderAndProduct = picker.SelectedItem as DriverOrderAndProduct;
         var user = new User();
+        DateTime currentDateAndTime = DateTime.Now;
 
-        App.RuralRouteRepository.UpdateDelivery(change, driverOrderAndProduct.Order.Id);
+        App.RuralRouteRepository.UpdateDeliveryEnd(change, currentDateAndTime, driverOrderAndProduct.Order.Id);
         picker.SelectedItem = null;
         txt_customerAddress.Text = "";
         GridDisplay.Clear();

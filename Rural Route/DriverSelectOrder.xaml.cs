@@ -1,3 +1,4 @@
+
 using Rural_Route.Data;
 using Rural_Route.Views;
 using System.Collections.Generic;
@@ -10,17 +11,21 @@ public partial class DriverSelectOrder : ContentPage
     // public List<Product> ProductList = App.RuralRouteRepository.SelectProductName();
     //public List<DriverOrderAndProduct> customerOrderList = App.RuralRouteRepository.DisplayOrder();
     int orderid;
+    
+    //Date startTime = DateTime.Now.ToString("HH:mm:ss tt");
     public DriverSelectOrder()
     {
         InitializeComponent();
         PopulateCustomers();
         picker.SelectedIndexChanged += Picker_SelectedIndexChanged;
+       
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
         PopulateCustomers();
+
     }
 
     private void PopulateCustomers()
@@ -56,10 +61,12 @@ public partial class DriverSelectOrder : ContentPage
     private void Button_Pressed(object sender, EventArgs e)
     {
         string change = "Departed";
+        DateTime currentDateAndTime = DateTime.Now;
         var driverOrderAndProduct = picker.SelectedItem as DriverOrderAndProduct;
         var user = new User();
+        
 
-        App.RuralRouteRepository.UpdateDelivery(change, driverOrderAndProduct.Order.Id);
+        App.RuralRouteRepository.UpdateDeliverystart(change, currentDateAndTime, driverOrderAndProduct.Order.Id);
         App.RuralRouteRepository.UpdateDeliveryDriver(App.user.Id, driverOrderAndProduct.Order.Id);
         picker.SelectedItem = null;
         txt_customerAddress.Text = "";
